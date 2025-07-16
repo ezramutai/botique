@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" class="boutique-toolbar">
+  <span class="brand">
+    <mat-icon>storefront</mat-icon>
+    Kiprop Boutique
+  </span>
+
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/">
+    <mat-icon>home</mat-icon> Home
+  </button>
+  <button mat-button routerLink="/products">
+    <mat-icon>view_list</mat-icon> Products
+  </button>
+  <button mat-button routerLink="/contact">
+    <mat-icon>mail</mat-icon> Contact
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="layout-container">
+  <mat-sidenav mode="side" opened class="sidebar">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

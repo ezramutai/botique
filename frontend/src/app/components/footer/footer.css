@@ -1,0 +1,27 @@
+footer {
+  background: #fafafa;
+  color: #555;
+  padding: 1.2rem 0;
+  text-align: center;
+  font-size: 0.95rem;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.footer-icons {
+  margin-top: 0.5rem;
+}
+
+.footer-icons mat-icon {
+  margin: 0 0.4rem;
+  cursor: pointer;
+  color: #845ec2;
+  transition: transform 0.2s ease;
+}
+
+.footer-icons mat-icon:hover {
+  transform: scale(1.2);
+  color: #ff6f91;
+}
