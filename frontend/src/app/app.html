@@ -1,11 +1,12 @@
 <mat-toolbar color="primary" class="boutique-toolbar">
   <span class="brand">
-    <mat-icon>storefront</mat-icon>
+    <fa-icon [icon]="'store'"></fa-icon>
     Kiprop Boutique
   </span>
-
   <span class="spacer"></span>
-
+  <button mat-icon-button *ngIf="isMobile" (click)="toggleSidebar()">
+    <mat-icon>menu</mat-icon>
+  </button>
   <button mat-button routerLink="/">
     <mat-icon>home</mat-icon> Home
   </button>
@@ -18,10 +19,19 @@
 </mat-toolbar>
 
 <mat-sidenav-container class="layout-container">
-  <mat-sidenav mode="side" opened class="sidebar">
-    <app-sidebar></app-sidebar>
+  <mat-sidenav
+    [mode]="isMobile ? 'over' : 'side'"
+    [(opened)]="isSidebarOpen"
+    class="sidebar"
+    [fixedInViewport]="isMobile"
+    [autoFocus]="false"
+  >
+    <div class="sidebar-content">
+      <button mat-button routerLink="/"><fa-icon [icon]="'home'"></fa-icon> Home</button>
+      <button mat-button routerLink="/products"><fa-icon [icon]="'th-list'"></fa-icon> Products</button>
+      <button mat-button routerLink="/contact"><fa-icon [icon]="'envelope'"></fa-icon> Contact</button>
+    </div>
   </mat-sidenav>
-
   <mat-sidenav-content class="main-content">
     <router-outlet></router-outlet>
     <app-footer></app-footer>

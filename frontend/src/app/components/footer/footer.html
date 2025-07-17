@@ -1,13 +1,13 @@
 <footer class="boutique-footer">
   <div class="footer-content">
     <div class="footer-brand">
-      <mat-icon>storefront</mat-icon>
+      <fa-icon [icon]="faStore"></fa-icon>
       Kiprop Boutique
     </div>
     <div class="footer-links">
-      <a routerLink="/">Home</a>
-      <a routerLink="/products">Products</a>
-      <a routerLink="/contact">Contact</a>
+      <a routerLink="/" routerLinkActive="active">Home</a>
+      <a routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
     </div>
     <div class="footer-note">
       &copy; {{ currentYear }} Kiprop Boutique. All rights reserved.

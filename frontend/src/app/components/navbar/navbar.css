@@ -1,24 +1,24 @@
-/* Gradient background */
-.boutique-navbar {
-  background: linear-gradient(90deg, #ff6f91, #845ec2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.boutique-toolbar {
+  background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100vw;
+  left: 0;
 }
 
-/* Brand */
-.boutique-navbar .navbar-brand {
+.brand {
   letter-spacing: 1px;
   font-weight: bold;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1.4rem;
+  color: #fff;
 }
 
-/* Nav links */
-.boutique-navbar .nav-link {
+.nav-link {
   color: #fff !important;
   font-weight: 500;
   margin: 0 0.6rem;
@@ -27,32 +27,27 @@
   gap: 0.4rem;
   transition: color 0.3s ease;
   font-size: 1rem;
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
 }
 
-.boutique-navbar .nav-link:hover {
+.nav-link:hover {
   color: #ffe8f0 !important;
   text-decoration: none;
 }
 
-/* Active route link (optional) */
-.boutique-navbar .nav-link.active {
-  text-decoration: underline;
+.nav-link.active {
+  background: rgba(255,255,255,0.18);
+  color: #ffe8f0 !important;
+  text-decoration: none;
 }
 
-/* Bootstrap icons inside nav */
-.boutique-navbar .bi {
-  font-size: 1.1rem;
-}
-
-/* Navbar toggler (hamburger icon) */
-.navbar-toggler {
-  border: none;
-  background-color: rgba(255, 255, 255, 0.15);
-  padding: 0.45rem 0.65rem;
-  border-radius: 5px;
-}
-
-.navbar-toggler .bi {
-  color: #fff;
-  font-size: 1.3rem;
+@media (max-width: 600px) {
+  .brand {
+    font-size: 1.1rem;
+  }
+  .nav-link {
+    font-size: 0.95rem;
+    margin: 0 0.3rem;
+  }
 }
