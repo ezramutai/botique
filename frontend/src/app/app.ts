@@ -7,7 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Footer } from './components/footer/footer';
+import { Footer } from './layout/footer/footer';
+import { Navbar } from './layout/navbar/navbar';
+import { Home } from './components/home/home'; // ✅ Corrected import
 
 @Component({
   selector: 'app-root',
@@ -15,12 +17,13 @@ import { Footer } from './components/footer/footer';
   imports: [
     RouterOutlet,
     Footer,
+    Navbar,
+    Home,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
     FontAwesomeModule,
-    
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']

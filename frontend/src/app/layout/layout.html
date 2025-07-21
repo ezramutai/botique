@@ -1,0 +1,23 @@
+<!-- Sticky Navbar -->
+<header class="navbar">
+  <app-navbar></app-navbar>
+</header>
+
+<!-- Body Container -->
+<div class="layout-container">
+  <!-- Sticky Sidebar -->
+  <aside class="sidebar">
+    <app-sidebar></app-sidebar>
+  </aside>
+
+  <!-- Main Content + Footer -->
+  <section class="content-area">
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+
+    <footer class="footer">
+      <app-footer></app-footer>
+    </footer>
+  </section>
+</div>
