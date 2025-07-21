@@ -1,6 +1,6 @@
 .new-footer {
-  background-color: #111;
-  color: #fff;
+  background: linear-gradient(90deg, #2dce98, #3a7bd5);
+  color: #f7f7f7;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -8,6 +8,7 @@
   text-align: center;
   gap: 1rem;
   font-family: 'Segoe UI', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .footer-section {
@@ -21,10 +22,11 @@
 .footer-section h2 {
   font-size: 1.2rem;
   margin-bottom: 0.3rem;
+  color: #fff;
 }
 
 .footer-section a {
-  color: #ccc;
+  color: #e0e0e0;
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.3s ease;
@@ -32,19 +34,19 @@
 }
 
 .footer-section a:hover {
-  color: #fff;
+  color: #f7f7f7;
 }
 
 .footer-section img {
   width: 22px;
   height: 22px;
   margin: 0 0.3rem;
-  filter: brightness(90%);
+  filter: brightness(80%);
   transition: filter 0.3s ease;
 }
 
 .footer-section img:hover {
-  filter: brightness(150%);
+  filter: brightness(120%);
 }
 
 /* Mobile responsiveness */
