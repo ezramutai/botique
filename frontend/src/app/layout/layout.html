@@ -1,12 +1,12 @@
 <!-- Sticky Navbar -->
 <header class="navbar">
-  <app-navbar></app-navbar>
+  <app-navbar (toggleSidebar)="showSidebar = !showSidebar"></app-navbar>
 </header>
 
 <!-- Body Container -->
 <div class="layout-container">
-  <!-- Sticky Sidebar -->
-  <aside class="sidebar">
+  <!-- Toggleable Sidebar for Mobile -->
+  <aside class="sidebar" *ngIf="showSidebar">
     <app-sidebar></app-sidebar>
   </aside>
 

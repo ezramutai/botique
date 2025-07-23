@@ -7,14 +7,15 @@ import { Footer } from './footer/footer';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [Navbar, Sidebar, Footer, RouterOutlet,],
+  imports: [Navbar, Sidebar, Footer, RouterOutlet],
   templateUrl: './layout.html',
   styleUrls: ['./layout.css']
 })
 export class Layout {
-  sidebarOpen = false;
+  showSidebar = false;
 
+  // Optionally, if you want a method-based toggle:
   toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
+    this.showSidebar = false;
   }
 }

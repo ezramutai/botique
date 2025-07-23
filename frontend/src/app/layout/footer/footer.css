@@ -1,81 +1,78 @@
 .new-footer {
-  background: linear-gradient(90deg, #2dce98, #3a7bd5);
-  color: #f7f7f7;
+  background-color: #ffe6f0; /* Same soft pink as navbar */
+  color: #6a006a;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 1.2rem 1rem;
-  text-align: center;
-  gap: 1rem;
+  align-items: flex-start;
+  padding: 2rem 1.5rem;
+  gap: 2rem;
   font-family: 'Segoe UI', sans-serif;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 2px solid #ffcce5;
 }
 
 .footer-section {
   flex: 1 1 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .footer-section h2 {
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
-  color: #fff;
+  font-family: 'Segoe Script', cursive;
+  color: #b30059;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
 }
 
-.footer-section a {
-  color: #e0e0e0;
-  text-decoration: none;
+.footer-section p {
   font-size: 0.9rem;
+  color: #6a006a;
+}
+
+.footer-section.links a {
+  display: block;
+  margin: 0.4rem 0;
+  color: #6a006a;
+  text-decoration: none;
+  font-weight: 500;
   transition: color 0.3s ease;
-  line-height: 1.4;
 }
 
-.footer-section a:hover {
-  color: #f7f7f7;
+.footer-section.links a:hover {
+  color: #b30059;
 }
 
-.footer-section img {
-  width: 22px;
-  height: 22px;
-  margin: 0 0.3rem;
-  filter: brightness(80%);
-  transition: filter 0.3s ease;
+.footer-section.social a {
+  display: inline-block;
+  margin-right: 1rem;
+  transition: transform 0.2s ease;
 }
 
-.footer-section img:hover {
-  filter: brightness(120%);
+.footer-section.social img {
+  width: 25px;
+  height: 25px;
+  filter: brightness(0) saturate(100%) invert(16%) sepia(83%) saturate(6023%) hue-rotate(307deg) brightness(91%) contrast(108%);
+  /* Gives icons a boutique magenta look */
 }
 
-/* Mobile responsiveness */
+.footer-section.social a:hover img {
+  transform: scale(1.2);
+}
+
 @media (max-width: 768px) {
   .new-footer {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem 0.5rem;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .footer-section {
-    flex: 1 1 45%;
-    max-width: 48%;
-    gap: 0.4rem;
+    margin-bottom: 1.5rem;
   }
 
-  .footer-section h2 {
-    font-size: 1rem;
-    margin-bottom: 0.2rem;
+  .footer-section.links a {
+    margin: 0.3rem;
   }
 
-  .footer-section a {
-    font-size: 0.85rem;
-  }
-
-  .footer-section img {
-    width: 20px;
-    height: 20px;
+  .footer-section.social img {
+    margin: 0 0.7rem;
   }
 }

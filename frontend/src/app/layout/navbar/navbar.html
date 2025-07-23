@@ -1,23 +1,27 @@
 <mat-toolbar class="navbar" color="primary">
-  <!-- Left: Menu Icon (only on mobile) -->
-  <button
-    mat-icon-button
-    class="menu-icon"
-    *ngIf="isMobile"
-    (click)="toggleSidebar.emit()"
-    aria-label="Toggle sidebar"
-  >
-    <mat-icon>menu</mat-icon>
-  </button>
+  <div class="navbar-brand">
+    <!-- Hamburger menu for mobile -->
+    <button
+      mat-icon-button
+      class="menu-icon"
+      *ngIf="isMobile"
+      (click)="toggleSidebar.emit()"
+      aria-label="Toggle menu"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="logo-container">
+      <img src="assets/images/dress3.jpg" alt="Kiprop's Botique Logo" class="logo" />
+    </div>
+    <span class="brand-name">Kiprop's Botique</span>
+  </div>
 
-  <!-- Center: Navigation Links -->
   <div class="nav-links" [ngClass]="{ 'nav-links-mobile': isMobile }">
     <button mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</button>
     <button mat-button routerLink="/products" routerLinkActive="active-link">Products</button>
     <button mat-button routerLink="/contact" routerLinkActive="active-link">Contact</button>
   </div>
 
-  <!-- Right: Search + Cart -->
   <div class="nav-right" *ngIf="!isMobile">
     <mat-form-field appearance="outline" class="search-bar" hideRequiredMarker>
       <mat-label>Search</mat-label>

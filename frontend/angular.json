@@ -16,9 +16,11 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/assets/"
               }
             ],
             "styles": [
@@ -71,11 +73,12 @@
           "options": {
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+  {
+    "glob": "**/*",
+    "input": "public",
+    "output": "assets"
+  }
+],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
@@ -84,5 +87,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b2ad5c4f-7553-4782-ba21-0a49b2bc85b4"
   }
 }

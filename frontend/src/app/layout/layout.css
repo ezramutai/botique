@@ -48,6 +48,7 @@ html, body {
 .main-content {
   flex: 1;
   padding: 1rem;
+  overflow-x: hidden;
   overflow-y: auto;
   animation: fadeIn 0.4s ease-in-out;
 }
