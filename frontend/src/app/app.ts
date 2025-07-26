@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
-import { faStore } from '@fortawesome/free-solid-svg-icons';
 import { RouterOutlet } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
+import { faStore } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { Footer } from './layout/footer/footer';
 import { Navbar } from './layout/navbar/navbar';
-import { Home } from './components/home/home'; // ✅ Corrected import
+import { Home } from './components/home/home';
+import { Products } from './components/products/products';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +23,12 @@ import { Home } from './components/home/home'; // ✅ Corrected import
     Footer,
     Navbar,
     Home,
+    Products,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    FontAwesomeModule,
+    FontAwesomeModule
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']

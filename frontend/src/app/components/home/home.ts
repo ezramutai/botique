@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
-interface Product {
+export interface Product {
   name: string;
   detail: string;
   price: number;
@@ -9,98 +9,94 @@ interface Product {
 }
 
 @Component({
-  standalone: true,
   selector: 'app-home',
-  imports: [CommonModule],
+  standalone: true,
+  imports:[CommonModule],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
-export class Home implements OnInit, OnDestroy {
+export class Home {
   products: Product[] = [
     {
-      name: 'Elegant Dress',
-      detail: 'Perfect for weddings and parties',
-      price: 2999,
+      name: 'Floral Summer Dress',
+      detail: 'Light and breezy with floral prints.',
+      price: 2500,
       image: 'assets/images/dress1.jpg'
-    },
-    {
-      name: 'Classic Blazer',
-      detail: 'Stay classy and warm',
-      price: 4499,
-      image: 'assets/images/dress2.jpg'
-    },
-    {
-      name: 'African Kitenge',
-      detail: 'Cultural meets modern fashion',
-      price: 3499,
-      image: 'assets/images/dress3.jpg'
     },
     {
       name: 'Denim Jacket',
-      detail: 'Trendy casual wear',
-      price: 2799,
-      image: 'assets/images/dress1.jpg'
-    },
-    {
-      name: 'Floral Skirt',
-      detail: 'Light, breezy, and stylish',
-      price: 1999,
+      detail: 'Classic blue with a modern fit.',
+      price: 4500,
       image: 'assets/images/dress2.jpg'
     },
     {
-      name: 'Summer Maxi',
-      detail: 'Comfortable and elegant',
-      price: 2599,
+      name: 'Chic Handbag',
+      detail: 'Compact, elegant, and colorful.',
+      price: 3200,
       image: 'assets/images/dress3.jpg'
     },
     {
-      name: 'Party Gown',
-      detail: 'Shine at every event',
-      price: 3999,
+      name: 'Casual Sneakers',
+      detail: 'Comfort for everyday wear.',
+      price: 3900,
       image: 'assets/images/dress1.jpg'
     },
     {
-      name: 'Office Suit',
-      detail: 'Professional and chic',
-      price: 4799,
+      name: 'Ankara Maxi Dress',
+      detail: 'Bold African patterns for standout events.',
+      price: 5300,
       image: 'assets/images/dress2.jpg'
     }
   ];
 
-  get visibleProducts(): Product[] {
-    const total = this.products.length;
-    const prev = (this.currentIndex - 1 + total) % total;
-    const next = (this.currentIndex + 1) % total;
-    return [this.products[prev], this.products[this.currentIndex], this.products[next]];
-  }
-  
   currentIndex = 0;
-  autoScrollInterval: any;
+  visibleProducts: Product[] = [];
+  autoplayInterval: any;
 
-  ngOnInit(): void {
-    this.startAutoScroll();
+  constructor() {
+    this.updateVisibleProducts();
+    this.startAutoplay();
   }
 
-  ngOnDestroy(): void {
-    clearInterval(this.autoScrollInterval);
-  }
+  updateVisibleProducts(): void {
+    const len = this.products.length;
 
-  startAutoScroll(): void {
-    this.autoScrollInterval = setInterval(() => {
-      this.next();
-    }, 5000);
+    const left = this.products[(this.currentIndex - 1 + len) % len];
+    const center = this.products[this.currentIndex % len];
+    const right = this.products[(this.currentIndex + 1) % len];
+
+    this.visibleProducts = [left, center, right];
   }
 
   next(): void {
     this.currentIndex = (this.currentIndex + 1) % this.products.length;
+    this.updateVisibleProducts();
   }
 
   prev(): void {
     this.currentIndex =
       (this.currentIndex - 1 + this.products.length) % this.products.length;
+    this.updateVisibleProducts();
   }
 
   goTo(index: number): void {
     this.currentIndex = index;
+    this.updateVisibleProducts();
+    this.resetAutoplay();
+  }
+
+  startAutoplay(): void {
+    this.autoplayInterval = setInterval(() => {
+      this.next();
+    }, 4000);
+  }
+
+  stopAutoplay(): void {
+    clearInterval(this.autoplayInterval);
+  }
+
+  resetAutoplay(): void {
+    this.stopAutoplay();
+    this.startAutoplay();
   }
 }

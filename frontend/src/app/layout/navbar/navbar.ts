@@ -1,5 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output
+} from '@angular/core';
+import {
+  RouterLink,
+  RouterLinkActive
+} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +33,31 @@ import { MatInputModule } from '@angular/material/input';
   ]
 })
 export class Navbar {
-  @Input() isMobile = false;
-  @Input() cartCount = 0;
   @Output() toggleSidebar = new EventEmitter<void>();
+  @Input() cartCount = 0;
+
+  isMobile = false;
+  searchQuery = '';
+
+  constructor() {
+    this.updateScreenSize();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.updateScreenSize();
+  }
+
+  private updateScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+  }
+
+  toggleMenu() {
+    this.toggleSidebar.emit();
+  }
+
+  onSearch() {
+    // Hook this to a service or router navigation later
+    console.log('Search for:', this.searchQuery);
+  }
 }
