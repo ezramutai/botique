@@ -1,0 +1,27 @@
+<div class="cart-modal">
+  <div class="modal-header">
+    <h2>Your Cart</h2>
+    <button mat-icon-button (click)="close()" aria-label="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="data.cartItems.length; else emptyCart">
+    <div *ngFor="let item of data.cartItems" class="cart-item">
+      <img [src]="item.image" width="50" height="50" />
+      <div class="item-info">
+        <strong>{{ item.name }}</strong>
+        <p>Ksh {{ item.newPrice }} × {{ item.quantity }}</p>
+        <div class="qty-controls">
+          <button mat-mini-button (click)="decrease(item)">−</button>
+          <button mat-mini-button (click)="increase(item)">+</button>
+          <button mat-icon-button color="warn" (click)="remove(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #emptyCart>
+    <p class="empty">Your cart is empty.</p>
+  </ng-template>
+</div>

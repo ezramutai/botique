@@ -1,51 +1,28 @@
 <div class="product-grid">
   <div class="product-card" *ngFor="let product of products">
-    <img [src]="product.image" [alt]="product.name">
-    <div class="info">
+    <!-- Product Image -->
+    <img [src]="product.image" [alt]="product.name" class="product-image" />
+
+    <!-- Product Info -->
+    <div class="product-info">
       <h3>{{ product.name }}</h3>
-      <p class="desc">{{ product.description }}</p>
-      <div class="price">
-        <span class="old-price" *ngIf="product.oldPrice">Ksh {{ product.oldPrice }}</span>
+
+      <!-- Price -->
+      <p class="price">
+        <span class="old-price">Ksh {{ product.oldPrice }}</span>
         <span class="new-price">Ksh {{ product.newPrice }}</span>
-      </div>
-      <button class="buy-button">Add to Cart</button>
+      </p>
+
+      <!-- Description -->
+      <p class="description">
+        {{ product.description | slice:0:45 }}... 
+        <span class="see-more">→</span>
+      </p>
+
+      <!-- Add/Remove Button -->
+      <button (click)="toggleCart(product)" [ngClass]="{ 'remove': isInCart(product.id) }">
+        {{ isInCart(product.id) ? 'Remove from Cart' : 'Add to Cart' }}
+      </button>
     </div>
   </div>
 </div>
-
-<!-- Cart Summary -->
-<div class="cart-summary">
-  🛒 {{ totalItems }} item(s) — Total: Ksh {{ totalPrice }}
-</div>
-
-<!-- Product Grid -->
-<div class="product-grid">
-  <div class="product-card" *ngFor="let product of products">
-    <img [src]="product.image" [alt]="product.name" />
-    <div class="info">
-      <h3>{{ product.name }}</h3>
-      <p class="desc">{{ product.description }}</p>
-      <div class="price">
-        <span class="old-price" *ngIf="product.oldPrice">Ksh {{ product.oldPrice }}</span>
-        <span class="new-price">Ksh {{ product.newPrice }}</span>
-      </div>
-      <button (click)="addToCart(product)">Add to Cart</button>
-    </div>
-  </div>
-</div>
-
-<!-- Optional: Quantity Controls Below Product Grid -->
-<div *ngIf="cart.length" class="cart-details">
-  <h4>Cart Details</h4>
-  <div *ngFor="let item of cart" class="cart-item">
-    <img [src]="item.product.image" />
-    <div class="info">
-      <p>{{ item.product.name }}</p>
-      <div class="qty">
-        <button (click)="decreaseQuantity(item)">−</button>
-        <span>{{ item.quantity }}</span>
-        <button (click)="increaseQuantity(item)">+</button>
-      </div>
-    </div>
-  </div>
-</div>-->

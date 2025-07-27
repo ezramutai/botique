@@ -15,6 +15,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NgIf, NgFor } from '@angular/common';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CartService } from '../../services/cart-service';
+import { CartDialogue } from '../../components/cart-dialogue/cart-dialogue';
+import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -26,10 +33,14 @@ import { MatInputModule } from '@angular/material/input';
     RouterLink,
     RouterLinkActive,
     MatToolbarModule,
+    FormsModule,
     MatIconModule,
     MatButtonModule,
+    MatInputModule,
     MatFormFieldModule,
-    MatInputModule
+    MatDialogModule,
+    NgIf,
+    NgFor
   ]
 })
 export class Navbar {
@@ -38,9 +49,22 @@ export class Navbar {
 
   isMobile = false;
   searchQuery = '';
+  cartItems: any[] = [];
 
-  constructor() {
+  constructor(
+    private cartService: CartService,
+    private dialog: MatDialog
+  ) {
     this.updateScreenSize();
+
+    // 🔁 Sync cart state
+    this.cartService.cart$.subscribe((items: any[]) => {
+      this.cartItems = items;
+      this.cartCount = items.reduce(
+        (acc: any, item: { quantity: any }) => acc + item.quantity,
+        0
+      );
+    });
   }
 
   @HostListener('window:resize')
@@ -57,7 +81,30 @@ export class Navbar {
   }
 
   onSearch() {
-    // Hook this to a service or router navigation later
     console.log('Search for:', this.searchQuery);
+  }
+
+  openCartDialog() {
+    this.dialog.open(CartDialogue, {
+      width: '500px',
+      autoFocus: false,
+      backdropClass: 'custom-dialog-backdrop',
+      panelClass: 'custom-dialog-panel',
+      data: {
+        items: this.cartItems
+      }
+    });
+  }
+
+  increase(item: any) {
+    this.cartService.updateQuantity(item.id, 1);
+  }
+
+  decrease(item: any) {
+    this.cartService.updateQuantity(item.id, -1);
+  }
+
+  remove(item: any) {
+    this.cartService.removeFromCart(item.id);
   }
 }
