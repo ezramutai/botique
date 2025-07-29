@@ -1,21 +1,16 @@
-<!-- Sticky Navbar -->
 <header class="navbar">
   <app-navbar (toggleSidebar)="showSidebar = !showSidebar"></app-navbar>
 </header>
 
-<!-- Body Container -->
 <div class="layout-container">
-  <!-- Toggleable Sidebar for Mobile -->
   <aside class="sidebar" *ngIf="showSidebar">
     <app-sidebar></app-sidebar>
   </aside>
 
-  <!-- Main Content + Footer -->
   <section class="content-area">
     <main class="main-content">
       <router-outlet></router-outlet>
     </main>
-
     <footer class="footer">
       <app-footer></app-footer>
     </footer>

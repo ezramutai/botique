@@ -1,15 +1,30 @@
 <nav class="navbar">
-  <!-- Hamburger Icon -->
-  <div class="hamburger" (click)="toggleMenu()">
+  <!-- Hamburger for mobile -->
+  <button class="menu-btn" *ngIf="isMobile" (click)="toggleSidebar.emit()" aria-label="Menu">
     <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Logo + Brand -->
+  <div class="brand">
+    <img src="assets/images/dress3.jpg" alt="Logo" class="logo" />
+    <span class="brand-name">Kiprop Boutique</span>
   </div>
 
-  <!-- Brand Name -->
-  <div class="navbar-logo">Kiprop Boutique</div>
+  <!-- Nav Links -->
+  <div class="nav-links">
+    <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <mat-icon>home</mat-icon> Home
+    </a>
+    <a routerLink="/products" routerLinkActive="active-link">
+      <mat-icon>storefront</mat-icon> Products
+    </a>
+    <a routerLink="/contact" routerLinkActive="active-link">
+      <mat-icon>call</mat-icon> Contact
+    </a>
+  </div>
 
-  <!-- Right Section -->
-  <div class="navbar-links">
-    <!-- Search -->
+  <!-- Search Bar -->
+  <div class="search-wrapper">
     <mat-form-field appearance="outline" class="search-bar">
       <mat-label>Search</mat-label>
       <input matInput [(ngModel)]="searchQuery" placeholder="Search products..." />
@@ -17,11 +32,11 @@
         <mat-icon>search</mat-icon>
       </button>
     </mat-form-field>
+  </div>
 
-    <!-- Cart Icon -->
-    <div class="cart-section" (click)="openCartDialog()">
-      <mat-icon class="cart-icon">shopping_cart</mat-icon>
-      <span class="cart-count" *ngIf="cartCount > 0">{{ cartCount }}</span>
-    </div>
+  <!-- Cart Icon -->
+  <div class="cart-section" (click)="openCartDialog()">
+    <mat-icon class="cart-icon">shopping_cart</mat-icon>
+    <span class="cart-count" *ngIf="cartCount > 0">{{ cartCount }}</span>
   </div>
 </nav>

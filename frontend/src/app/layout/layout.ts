@@ -13,9 +13,4 @@ import { Footer } from './footer/footer';
 })
 export class Layout {
   showSidebar = false;
-
-  // Optionally, if you want a method-based toggle:
-  toggleSidebar() {
-    this.showSidebar = false;
-  }
 }

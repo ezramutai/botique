@@ -9,19 +9,17 @@ import {
   RouterLink,
   RouterLinkActive
 } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgIf, NgFor } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { CartService } from '../../services/cart-service';
-import { CartDialogue } from '../../components/cart-dialogue/cart-dialogue';
 import { FormsModule } from '@angular/forms';
 
-
+import { CartService } from '../../services/cart-service';
+import { CartDialogue } from '../../components/cart-dialogue/cart-dialogue';
 
 @Component({
   selector: 'app-navbar',
@@ -33,19 +31,20 @@ import { FormsModule } from '@angular/forms';
     RouterLink,
     RouterLinkActive,
     MatToolbarModule,
-    FormsModule,
     MatIconModule,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
+    CartDialogue,
+    FormsModule,
     NgIf,
     NgFor
   ]
 })
 export class Navbar {
   @Output() toggleSidebar = new EventEmitter<void>();
-  @Input() cartCount = 0;
+  cartCount = 0;
 
   isMobile = false;
   searchQuery = '';
@@ -57,11 +56,11 @@ export class Navbar {
   ) {
     this.updateScreenSize();
 
-    // 🔁 Sync cart state
+    // Update cart count reactively
     this.cartService.cart$.subscribe((items: any[]) => {
       this.cartItems = items;
       this.cartCount = items.reduce(
-        (acc: any, item: { quantity: any }) => acc + item.quantity,
+        (acc, item) => acc + item.quantity,
         0
       );
     });
@@ -81,30 +80,20 @@ export class Navbar {
   }
 
   onSearch() {
-    console.log('Search for:', this.searchQuery);
+    console.log('Searching for:', this.searchQuery);
   }
 
   openCartDialog() {
-    this.dialog.open(CartDialogue, {
-      width: '500px',
-      autoFocus: false,
-      backdropClass: 'custom-dialog-backdrop',
-      panelClass: 'custom-dialog-panel',
+    const dialogRef = this.dialog.open(CartDialogue, {
+      width: '400px',
       data: {
-        items: this.cartItems
+        cartItems: this.cartService.getCartItems(),
+        cartService: this.cartService
       }
     });
-  }
 
-  increase(item: any) {
-    this.cartService.updateQuantity(item.id, 1);
-  }
-
-  decrease(item: any) {
-    this.cartService.updateQuantity(item.id, -1);
-  }
-
-  remove(item: any) {
-    this.cartService.removeFromCart(item.id);
+    dialogRef.afterClosed().subscribe(() => {
+      // Optional: handle after cart dialog closes
+    });
   }
 }

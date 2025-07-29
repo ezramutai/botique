@@ -1,92 +1,131 @@
-/* === CART MODAL STYLES === */
+.cart-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(58,123,213,0.15);
+  z-index: 999;
+}
+
+/* Modal container */
 .cart-modal {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 90%;
-  max-width: 600px;
-  background: #fff;
+  width: 75vw;
+  max-width: 400px;
+  max-height: 80vh;
   transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 30px rgba(58,123,213,0.18);
+  overflow-y: auto;
   z-index: 1000;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  animation: fadeInScale 0.3s ease-in-out;
-  font-family: 'Segoe UI', sans-serif;
 }
 
-/* === ANIMATION === */
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-/* === MODAL HEADER === */
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #c2e9fb;
   margin-bottom: 1rem;
 }
 
 .modal-header h2 {
   font-size: 1.5rem;
   margin: 0;
+  color: #3a7bd5;
+  font-family: 'Montserrat', sans-serif;
 }
 
-/* === CART ITEM === */
 .cart-item {
   display: flex;
   align-items: center;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 1rem;
+  background: #f6f8fa;
+  border-radius: 8px;
+  padding: 0.5rem;
 }
 
 .cart-item img {
   border-radius: 6px;
   margin-right: 1rem;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
+  box-shadow: 0 1px 6px rgba(58,123,213,0.10);
 }
 
 .item-info {
   flex-grow: 1;
 }
 
-.item-info strong {
-  font-size: 1rem;
-}
-
-.item-info p {
-  margin: 0.2rem 0;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-/* === QUANTITY CONTROLS === */
 .qty-controls {
+  margin-top: 0.5rem;
   display: flex;
-  gap: 0.4rem;
-  margin-top: 0.4rem;
+  gap: 0.5rem;
 }
 
-.qty-controls button {
-  min-width: 32px;
-  height: 32px;
+.qty-btn {
+  background: #3a7bd5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.qty-btn:disabled {
+  background: #c2e9fb;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: #22223b;
+}
+
+.remove-btn {
+  background: #fff;
+  color: #3a7bd5;
+  border: 1px solid #3a7bd5;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
   font-size: 1rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: background 0.2s, color 0.2s;
 }
 
-/* === EMPTY CART === */
+.remove-btn:hover {
+  background: #3a7bd5;
+  color: #fff;
+}
+
 .empty {
   text-align: center;
-  font-style: italic;
   color: #888;
-  padding: 2rem 0;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .cart-modal {
+    width: 95vw;
+    padding: 0.75rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.2rem;
+  }
+  .cart-item img {
+    width: 36px;
+    height: 36px;
+  }
 }

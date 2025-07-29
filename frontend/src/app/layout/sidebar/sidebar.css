@@ -1,14 +1,19 @@
-.boutique-sidenav {
+.sidebar {
   width: 220px;
   min-width: 180px;
-  background: linear-gradient(180deg, #3a7bd5 0%, #00d2ff 100%);
-  color: white;
-  height: 100%;
+  background: linear-gradient(180deg, #3a7bd5 0%, #c2e9fb 100%);
+  color: #22223b;
+  height: 100vh;
   box-sizing: border-box;
   padding: 1rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+  box-shadow: 2px 0 12px rgba(58,123,213,0.15);
 }
 
 .sidebar-header {
@@ -18,17 +23,17 @@
   margin-bottom: 2rem;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #fff;
+  color: #3a7bd5;
 }
 
 .logo-icon {
   font-size: 2rem;
-  color: #ffd700;
+  color: #3a7bd5;
 }
 
 .brand-name {
   font-size: 1.1rem;
-  color: #fff;
+  color: #3a7bd5;
   font-weight: bold;
 }
 
@@ -39,7 +44,7 @@ mat-nav-list {
 }
 
 a.mat-list-item {
-  color: #fff;
+  color: #22223b;
   font-weight: 500;
   border-radius: 6px;
   margin-bottom: 0.3rem;
@@ -50,17 +55,17 @@ a.mat-list-item {
 }
 
 a.mat-list-item:hover {
-  background: rgba(255, 215, 0, 0.15);
-  color: #ffd700;
+  background: #c2e9fb;
+  color: #3a7bd5;
 }
 
 .active-link {
-  background: #ffd700;
-  color: #3a7bd5 !important;
+  background: #3a7bd5;
+  color: #fff !important;
 }
 
 @media (max-width: 900px) {
-  .boutique-sidenav {
+  .sidebar {
     width: 160px;
     min-width: 120px;
     padding: 0.5rem;
@@ -72,13 +77,17 @@ a.mat-list-item:hover {
 }
 
 @media (max-width: 600px) {
-  .boutique-sidenav {
+  .sidebar {
     width: 100vw;
     min-width: 100vw;
     padding: 0.5rem 0;
     border-right: none;
     border-bottom: 1px solid #ddd;
     height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1200;
   }
   mat-nav-list {
     flex-direction: row;
@@ -92,6 +101,11 @@ a.mat-list-item:hover {
   }
   .sidebar-header {
     justify-content: center;
-    margin-bottom: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    display: none !important;
   }
 }

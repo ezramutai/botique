@@ -14,15 +14,21 @@ export class CartService {
     return this.cartItems.getValue();
   }
 
+  getCartItems(): any[] {
+    return this.getCart();
+  }
+
   addToCart(product: any) {
     const current = this.getCart();
     const exists = current.find(p => p.id === product.id);
     if (!exists) {
       product.quantity = 1;
       this.cartItems.next([...current, product]);
+    } else {
+      this.updateQuantity(product.id, 1);
     }
   }
-
+  
   removeFromCart(productId: number) {
     const updated = this.getCart().filter(p => p.id !== productId);
     this.cartItems.next(updated);
