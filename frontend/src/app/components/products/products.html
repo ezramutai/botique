@@ -1,28 +1,80 @@
 <div class="product-grid">
-  <div class="product-card" *ngFor="let product of products">
-    <!-- Product Image -->
-    <img [src]="product.image" [alt]="product.name" class="product-image" />
+  <div class="product-card" *ngFor="let product of products" (click)="openDetails(product)">
+    <div class="product-card-content">
+      <!-- Product Image -->
+      <img [src]="product.image" [alt]="product.name" class="product-image" />
 
-    <!-- Product Info -->
-    <div class="product-info">
-      <h3>{{ product.name }}</h3>
+      <!-- Product Info -->
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
 
-      <!-- Price -->
-      <p class="price">
-        <span class="old-price">Ksh {{ product.oldPrice }}</span>
-        <span class="new-price">Ksh {{ product.newPrice }}</span>
-      </p>
+        <!-- Price -->
+        <p class="price">
+          <span class="old-price">Ksh {{ product.oldPrice }}</span>
+          <span class="new-price">Ksh {{ product.newPrice }}</span>
+        </p>
 
-      <!-- Description -->
-      <p class="description">
-        {{ product.description | slice:0:45 }}... 
-        <span class="see-more">→</span>
-      </p>
+        <!-- Description -->
+        <p class="description">
+          {{ product.description | slice: 0:45 }}...
+          <span class="see-more">→</span>
+        </p>
 
-      <!-- Add/Remove Button -->
-      <button (click)="toggleCart(product)" [ngClass]="{ 'remove': isInCart(product.id) }">
-        {{ isInCart(product.id) ? 'Remove from Cart' : 'Add to Cart' }}
-      </button>
+        <!-- Add/Remove Button -->
+        <button 
+          (click)="toggleCart(product); openDetails(product)"
+          [ngClass]="{ 'remove': isInCart(product.id) }"
+        >
+          {{ isInCart(product.id) ? 'Remove from Cart' : 'Add to Cart' }}
+        </button>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-container" *ngIf="selectedProduct">
+  <h2 class="modal-title">{{ selectedProduct.name }}</h2>
+
+  <!-- Discount Chart -->
+  <apx-chart
+    [series]="[selectedProduct.discount || 0]"
+    [chart]="{ type: 'radialBar', height: 250 }"
+    [labels]="['Discount']"
+    [plotOptions]="{
+      radialBar: {
+        hollow: { size: '60%' },
+        dataLabels: {
+          name: { show: true, fontSize: '14px' },
+          value: { show: true, fontSize: '20px' }
+        }
+      }
+    }"
+  ></apx-chart>
+
+  <!-- Color Circle -->
+  <div class="info-row">
+    <span>Color:</span>
+    <div 
+      class="color-badge" 
+      [style.backgroundColor]="selectedProduct.color"
+      style="width: 20px; height: 20px; border-radius: 50%; display: inline-block;">
+    </div>
+  </div>
+
+  <!-- Quantity Progress Bar -->
+  <div class="info-row">
+    <span>Quantity:</span>
+    <progress max="100" [value]="selectedProduct.quantity"></progress>
+  </div>
+
+  <!-- Location -->
+  <div class="info-row">
+    <span>Location:</span>
+    <i class="fas fa-map-marker-alt"></i>
+    <span>{{ selectedProduct.location || 'Kericho' }}</span>
+  </div>
+
+  <!-- Close Button -->
+  <button (click)="closeDetails()">Close</button>
 </div>

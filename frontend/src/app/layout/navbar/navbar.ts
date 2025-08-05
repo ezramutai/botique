@@ -3,7 +3,8 @@ import {
   EventEmitter,
   HostListener,
   Input,
-  Output
+  Output,
+  OnInit
 } from '@angular/core';
 import {
   RouterLink,
@@ -42,13 +43,16 @@ import { CartDialogue } from '../../components/cart-dialogue/cart-dialogue';
     NgFor
   ]
 })
-export class Navbar {
+export class Navbar implements OnInit {
   @Output() toggleSidebar = new EventEmitter<void>();
   cartCount = 0;
 
   isMobile = false;
   searchQuery = '';
   cartItems: any[] = [];
+
+  navHidden = false; // Controls mobile hide/show
+  private lastScrollTop = 0;
 
   constructor(
     private cartService: CartService,
@@ -66,6 +70,10 @@ export class Navbar {
     });
   }
 
+  ngOnInit() {
+    this.navHidden = false;
+  }
+
   @HostListener('window:resize')
   onResize() {
     this.updateScreenSize();
@@ -73,6 +81,23 @@ export class Navbar {
 
   private updateScreenSize() {
     this.isMobile = window.innerWidth <= 768;
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (this.isMobile) {
+      if (st > this.lastScrollTop && st > 50) {
+        this.navHidden = true; // Hide on scroll down
+      } else {
+        this.navHidden = false; // Show on scroll up
+      }
+    } else {
+      this.navHidden = false; // Always visible on desktop
+    }
+
+    this.lastScrollTop = st <= 0 ? 0 : st;
   }
 
   toggleMenu() {
