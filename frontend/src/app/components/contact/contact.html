@@ -1,0 +1,40 @@
+<div class="contact-container">
+  <h2>Contact Me</h2>
+
+  <!-- Social Links -->
+  <div class="social-links">
+    <a href="https://www.facebook.com/profile.php?id=100089092638023&mibextid=ZbWKwL" target="_blank">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/mutai10" target="_blank">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://twitter.com" target="_blank">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="mailto:ezramutai10@gmail.com">
+      <i class="fas fa-envelope"></i>
+    </a>
+    <a href="https://github.com/ezramutai" target="_blank">
+      <i class="fab fa-github"></i>
+    </a>
+  </div>
+
+  <!-- Send Message -->
+  <div class="message-box">
+    <textarea placeholder="Type your message here..." [(ngModel)]="messageText"></textarea>
+    <button (click)="sendMessage()" aria-label="Send message">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+
+  <!-- Call Us Button -->
+  <a href="tel:+254796702186" class="call-btn">
+    📞 Call Us
+  </a>
+
+  <!-- Toast -->
+  <div class="toast" *ngIf="showToast">
+    Message sent successfully!
+  </div>
+</div>

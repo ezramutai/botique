@@ -11,39 +11,47 @@
     </div>
   </section>
 
-  <!-- Product Carousel -->
+  <!-- Featured Products Carousel -->
   <section class="carousel-container">
     <h2>Featured Products</h2>
     <div class="carousel-wrapper">
-      <button class="nav prev" (click)="prev()">‹</button>
+      <button class="nav prev" (click)="prevSlide()" aria-label="Previous">&#10094;</button>
       <div class="carousel">
         <div
+          *ngFor="let product of products; let i = index"
           class="card"
-          *ngFor="let product of visibleProducts; let i = index"
           [ngClass]="{
-            'left': i === 0,
-            'center': i === 1,
-            'right': i === 2
+            'left': i === getLeftIndex(),
+            'center': i === currentIndex,
+            'right': i === getRightIndex()
           }"
         >
           <img [src]="product.image" [alt]="product.name" />
           <div class="info">
             <h3>{{ product.name }}</h3>
-            <p>{{ product.detail }}</p>
+            <p>{{ product.description }}</p>
+
+            <!-- Pricing -->
             <div class="price-section">
-              <span class="new-price">KSh {{ product.price }}</span>
+              <span class="old-price">KSh {{ product.oldPrice | number }}</span>
+              <span class="new-price">KSh {{ product.newPrice | number }}</span>
+            </div>
+
+            <!-- Color -->
+            <div class="product-color">
+              <strong>Color:</strong> {{ product.color }}
             </div>
           </div>
         </div>
       </div>
-      <button class="nav next" (click)="next()">›</button>
+      <button class="nav next" (click)="nextSlide()" aria-label="Next">&#10095;</button>
     </div>
     <div class="dots">
       <span
-        *ngFor="let product of products; let idx = index"
-        [class.active]="idx === currentIndex"
-        (click)="goTo(idx)">
-      </span>
+        *ngFor="let product of products; let i = index"
+        [class.active]="i === currentIndex"
+        (click)="goToSlide(i)"
+      ></span>
     </div>
   </section>
 

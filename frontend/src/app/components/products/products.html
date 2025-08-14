@@ -1,80 +1,60 @@
-<div class="product-grid">
-  <div class="product-card" *ngFor="let product of products" (click)="openDetails(product)">
-    <div class="product-card-content">
-      <!-- Product Image -->
+<div class="products-container">
+  <div class="product-card" *ngFor="let product of products">
+    <figure class="product-figure">
       <img [src]="product.image" [alt]="product.name" class="product-image" />
+    </figure>
 
-      <!-- Product Info -->
-      <div class="product-info">
-        <h3>{{ product.name }}</h3>
+    <h3>{{ product.name }}</h3>
 
-        <!-- Price -->
-        <p class="price">
-          <span class="old-price">Ksh {{ product.oldPrice }}</span>
-          <span class="new-price">Ksh {{ product.newPrice }}</span>
-        </p>
+    <!-- short teaser under title -->
+    <p class="product-desc">
+      {{ product.description }}
+    </p>
 
-        <!-- Description -->
-        <p class="description">
-          {{ product.description | slice: 0:45 }}...
-          <span class="see-more">→</span>
-        </p>
+    <p class="price">
+      <span class="old-price">Ksh {{ product.oldPrice }}</span>
+      <span class="new-price">Ksh {{ product.newPrice }}</span>
+    </p>
 
-        <!-- Add/Remove Button -->
-        <button 
-          (click)="toggleCart(product); openDetails(product)"
-          [ngClass]="{ 'remove': isInCart(product.id) }"
-        >
-          {{ isInCart(product.id) ? 'Remove from Cart' : 'Add to Cart' }}
-        </button>
-      </div>
-    </div>
+    <button (click)="openProductDetails(product)" class="see-more-btn">
+      <i class="fas fa-eye"></i> See More
+    </button>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal-container" *ngIf="selectedProduct">
-  <h2 class="modal-title">{{ selectedProduct.name }}</h2>
-
-  <!-- Discount Chart -->
-  <apx-chart
-    [series]="[selectedProduct.discount || 0]"
-    [chart]="{ type: 'radialBar', height: 250 }"
-    [labels]="['Discount']"
-    [plotOptions]="{
-      radialBar: {
-        hollow: { size: '60%' },
-        dataLabels: {
-          name: { show: true, fontSize: '14px' },
-          value: { show: true, fontSize: '20px' }
-        }
-      }
-    }"
-  ></apx-chart>
-
-  <!-- Color Circle -->
-  <div class="info-row">
-    <span>Color:</span>
-    <div 
-      class="color-badge" 
-      [style.backgroundColor]="selectedProduct.color"
-      style="width: 20px; height: 20px; border-radius: 50%; display: inline-block;">
+<!-- Product Details Modal -->
+<div class="modal-backdrop" *ngIf="selectedProduct">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>{{ selectedProduct.name }}</h2>
+      <button class="close-btn" (click)="closeProductDetails()">&times;</button>
+    </div>
+    <div class="modal-content">
+      <table>
+        <tr><th>ID</th><td>{{ selectedProduct.id }}</td></tr>
+        <tr><th>Description</th><td>{{ selectedProduct.description }}</td></tr>
+        <tr>
+          <th>Image</th>
+          <td>
+            <figure class="modal-figure">
+              <img [src]="selectedProduct.image" [alt]="selectedProduct.name" width="160">
+              <figcaption class="img-caption img-caption--small">
+                {{ selectedProduct.description }}
+              </figcaption>
+            </figure>
+          </td>
+        </tr>
+        <tr><th>Old Price</th><td>Ksh {{ selectedProduct.oldPrice }}</td></tr>
+        <tr><th>New Price</th><td>Ksh {{ selectedProduct.newPrice }}</td></tr>
+        <tr><th>Color</th><td>{{ selectedProduct.color }}</td></tr>
+        <tr><th>Available Amount</th><td>{{ selectedProduct.availableAmount }}</td></tr>
+        <tr><th>Delivery Time</th><td>{{ selectedProduct.deliveryTime }}</td></tr>
+        <tr><th>Discount</th><td>{{ selectedProduct.discount }}%</td></tr>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button class="remove-btn" (click)="removeFromCart(selectedProduct)">Remove</button>
+      <button class="add-btn" (click)="addToCart(selectedProduct)">Add to Cart</button>
     </div>
   </div>
-
-  <!-- Quantity Progress Bar -->
-  <div class="info-row">
-    <span>Quantity:</span>
-    <progress max="100" [value]="selectedProduct.quantity"></progress>
-  </div>
-
-  <!-- Location -->
-  <div class="info-row">
-    <span>Location:</span>
-    <i class="fas fa-map-marker-alt"></i>
-    <span>{{ selectedProduct.location || 'Kericho' }}</span>
-  </div>
-
-  <!-- Close Button -->
-  <button (click)="closeDetails()">Close</button>
 </div>

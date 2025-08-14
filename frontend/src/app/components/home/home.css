@@ -1,243 +1,310 @@
-
 /* Reset and base styles */
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .homepage-container {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-color: #333;
-background: #f8f9fa;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #e0e0e0;
+  background: linear-gradient(90deg, #1f1c2c 0%, #928dab 100%);
+  min-height: 100vh;
 }
 
 /* Banner Section */
 .banner {
-background: url('/assets/images/dress3.jpg') no-repeat center center/cover;
-height: 45vh;
-position: relative;
-display: flex;
-align-items: center;
-justify-content: center;
+  background: url('/assets/images/dress3.jpg') no-repeat center center/cover;
+  height: 45vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .glass {
-background: rgba(225, 225, 225, 0.8);
-backdrop-filter: blur(10px);
-padding: 40px;
-border-radius: 20px;
-text-align: center;
-max-width: 700px;
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  background: rgba(31, 28, 44, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 700px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
 .glass h1 {
-font-size: 2.5rem;
-margin-bottom: 20px;
-color: #222;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffd700;
+  letter-spacing: 1px;
 }
 
 .glass p {
-font-size: 1.2rem;
-margin-bottom: 30px;
-color: #444;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #e0e0e0;
 }
 
 .cta-buttons {
-display: flex;
-gap: 15px;
-justify-content: center;
-flex-wrap: wrap;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .cta {
-padding: 12px 24px;
-border: none;
-border-radius: 30px;
-font-size: 1rem;
-cursor: pointer;
-transition: 0.3s ease;
-background-color: #1f1c2c;
-color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  background-color: #ffd700;
+  color: #1f1c2c;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
 }
 
 .cta.outline {
-background: transparent;
-border: 2px solid #000;
-color: #000;
+  background: transparent;
+  border: 2px solid #ffd700;
+  color: #ffd700;
 }
 
 .cta:hover {
-transform: scale(1.05);
+  transform: scale(1.05);
+  background: #fffbe7;
+  color: #1f1c2c;
 }
 
 /* Carousel Section */
 .carousel-container {
-padding: 60px 20px;
-background-color: #fff;
-text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(90deg, #1f1c2c 0%, #928dab 100%);
+  text-align: center;
 }
 
 .carousel-container h2 {
-font-size: 2rem;
-margin-bottom: 30px;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #ffd700;
+  letter-spacing: 1px;
 }
 
 .carousel-wrapper {
-position: relative;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  min-height: 320px;
 }
 
 .nav {
-font-size: 2rem;
-border: none;
-background: none;
-cursor: pointer;
-color: #333;
-padding: 10px;
-transition: 0.3s ease;
-z-index: 2;
+  font-size: 2.2rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #ffd700;
+  padding: 10px;
+  transition: color 0.3s, transform 0.3s;
+  z-index: 2;
+  outline: none;
 }
 
 .nav:hover {
-color: #000;
-transform: scale(1.2);
+  color: #fffbe7;
+  transform: scale(1.2);
 }
 
 .carousel {
-display: flex;
-overflow: hidden;
-width: 100%;
-max-width: 1000px;
-justify-content: center;
-gap: 30px;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: relative;
 }
 
 .card {
-background: #928dab;
-border-radius: 15px;
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-overflow: hidden;
-transition: transform 0.4s ease;
-min-width: 250px;
-max-width: 300px;
-flex-shrink: 0;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(31,28,44,0.13);
+  overflow: hidden;
+  transition: 
+    transform 0.5s cubic-bezier(.4,2,.6,1), 
+    box-shadow 0.4s, 
+    filter 0.4s, 
+    opacity 0.4s;
+  min-width: 250px;
+  max-width: 300px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.10);
+  border: 2px solid transparent;
+  opacity: 0.7;
+  filter: grayscale(40%);
+  transform: scale(0.92);
 }
 
 .card img {
-width: 100%;
-height: 200px;
-object-fit: cover;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #fffbe7;
+  border-bottom: 2px solid #ffd700;
 }
 
 .card .info {
-padding: 20px;
+  padding: 20px;
 }
 
 .card h3 {
-font-size: 1.2rem;
-margin-bottom: 10px;
-color: #111;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #ffd700;
 }
 
 .card p {
-font-size: 0.95rem;
-color: #555;
-margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  margin-bottom: 15px;
 }
 
 .price-section {
-font-size: 1.1rem;
-font-weight: bold;
-color: #e91e63;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffd700;
 }
 
-/* Carousel Positioning */
-.left {
-transform: scale(0.9);
-opacity: 0.7;
+/* Carousel Positioning & Animation */
+.card.left {
+  opacity: 0.7;
+  filter: grayscale(60%);
+  transform: scale(0.85) translateX(-30px);
+  z-index: 1;
 }
 
-.center {
-transform: scale(1.05);
-z-index: 2;
+.card.center {
+  opacity: 1;
+  filter: none;
+  background: rgba(255,255,255,0.18);
+  border: 2px solid #ffd700;
+  box-shadow: 0 8px 32px rgba(255,215,0,0.18);
+  transform: scale(1.08) translateY(-10px);
+  z-index: 2;
+  animation: focusCard 0.7s cubic-bezier(.4,2,.6,1);
 }
 
-.right {
-transform: scale(0.9);
-opacity: 0.7;
+@keyframes focusCard {
+  0% {
+    transform: scale(0.92) translateY(0);
+    box-shadow: 0 4px 24px rgba(31,28,44,0.13);
+  }
+  100% {
+    transform: scale(1.08) translateY(-10px);
+    box-shadow: 0 8px 32px rgba(255,215,0,0.18);
+  }
+}
+
+.card.right {
+  opacity: 0.7;
+  filter: grayscale(60%);
+  transform: scale(0.85) translateX(30px);
+  z-index: 1;
 }
 
 .dots {
-margin-top: 20px;
+  margin-top: 20px;
 }
 
 .dots span {
-display: inline-block;
-width: 12px;
-height: 12px;
-background: #ccc;
-border-radius: 50%;
-margin: 0 5px;
-cursor: pointer;
-transition: background 0.3s ease;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: #fffbe7;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  border: 2px solid #ffd700;
 }
 
 .dots span.active {
-background: #1f1c2c;
+  background: #ffd700;
 }
 
 /* Why Choose Us Section */
 .why-choose {
-background-color: #f1f3f5;
-padding: 60px 20px;
-text-align: center;
+  background: linear-gradient(90deg, #928dab 0%, #1f1c2c 100%);
+  padding: 60px 20px;
+  text-align: center;
 }
 
 .why-choose h2 {
-font-size: 2rem;
-margin-bottom: 30px;
-color: #222;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #ffd700;
+  letter-spacing: 1px;
 }
 
 .reasons {
-list-style: none;
-font-size: 1.1rem;
-max-width: 700px;
-margin: 0 auto;
-display: grid;
-gap: 15px;
+  list-style: none;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  display: grid;
+  gap: 15px;
 }
 
 .reasons li {
-background: #fff;
-padding: 15px 20px;
-border-left: #1f1c2c 5px solid;
-border-radius: 10px;
-box-shadow: 0 2px 8px linear-gradient(90deg, #1f1c2c 0%, #928dab 100%);
+  background: rgba(255,255,255,0.10);
+  padding: 15px 20px;
+  border-left: #ffd700 5px solid;
+  border-radius: 10px;
+  color: #fffbe7;
+  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
 }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .carousel {
+    gap: 10px;
+  }
+  .card {
+    min-width: 180px;
+    max-width: 220px;
+  }
+}
+
 @media (max-width: 768px) {
-.glass {
-padding: 25px;
+  .glass {
+    padding: 25px;
+  }
+
+  .glass h1 {
+    font-size: 2rem;
+  }
+
+  .carousel {
+    gap: 5px;
+  }
+
+  .card {
+    min-width: 140px;
+    max-width: 170px;
+  }
 }
 
-.glass h1 {
-font-size: 2rem;
+@media (max-width: 600px) {
+  .carousel-wrapper {
+    min-height: 220px;
+  }
+  .card {
+    min-width: 110px;
+    max-width: 130px;
+  }
+  .glass {
+    padding: 12px;
+  }
 }
-
-.carousel {
-gap: 10px;
-}
-
-.card {
-min-width: 200px;
-max-width: 250px;
-}
-}
-

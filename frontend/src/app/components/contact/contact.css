@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+
+body, html {
+  background: linear-gradient(90deg, #1f1c2c 0%, #928dab 100%);
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #e0e0e0;
+}
+
+.contact-container {
+  max-width: 480px; /* slightly bigger */
+  margin: 60px auto 0 auto;
+  background:rgba(60, 55, 74, 0.94); /* slightly lighter */
+  border-radius: 18px;
+  box-shadow: 0 10px 38px rgba(31,28,44,0.25); /* stronger shadow */
+  padding: 2.7rem 2.2rem 2.2rem 2.2rem; /* tiny padding increase */
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-container h2 {
+  color: #ffd700;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 2rem;
+}
+
+.social-links a {
+  color: #ffd700;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
+  border: 2px solid transparent;
+}
+
+.social-links a:hover {
+  background: #ffd700;
+  color: #1f1c2c;
+  transform: scale(1.13) rotate(-8deg);
+  border: 2px solid #fffbe7;
+}
+
+.message-box {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 1.7rem;
+  background: rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 0.7rem 0.8rem;
+  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
+}
+
+.message-box textarea {
+  flex: 1;
+  min-height: 60px;
+  max-height: 120px;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background: rgba(255,255,255,0.13);
+  color: #e0e0e0;
+  resize: vertical;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.message-box textarea:focus {
+  box-shadow: 0 0 0 2px #ffd700;
+  background: rgba(255,255,255,0.18);
+}
+
+.message-box button {
+  background: #ffd700;
+  color: #1f1c2c;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
+}
+
+.message-box button:hover {
+  background: #fffbe7;
+  color: #1f1c2c;
+  transform: scale(1.12) rotate(8deg);
+}
+
+.call-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 0.8rem 2.2rem;
+  background: #ffd700;
+  color: #1f1c2c;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  border: 2px solid transparent;
+}
+
+.call-btn:hover {
+  background: #fffbe7;
+  color: #1f1c2c;
+  border: 2px solid #ffd700;
+  transform: scale(1.05);
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%);
+  background: #ffd700;
+  color: #1f1c2c;
+  padding: 0.7rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
+  animation: fadeInOut 2.2s;
+  z-index: 10;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(20px);}
+  10% { opacity: 1; transform: translateX(-50%) translateY(0);}
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(20px);}
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .contact-container {
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    margin: 30px 5px 0 5px;
+  }
+  .social-links {
+    gap: 12px;
+  }
+  .message-box {
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.6rem 0.5rem;
+  }
+  .call-btn {
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 1rem;
+  }
+}
