@@ -1,14 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  /* Theme Colors */
-  --primary-color: #1e88e5;
-  --secondary-color: #1565c0;
-  --background-color: #f5f7fa;
-  --text-color: #333;
-  --navbar-bg: #1e88e5;
-  --navbar-text: #fff;
-  --sidebar-bg: #e3f2fd;
-  --footer-bg: #eeeeee;
+  /* Fonts */
+  --font-main: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Colors */
+  --color-primary: #ffd700;
+  --color-secondary: #1f1c2c;
+  --color-accent: #928dab;
+  --color-light: #fffbe7;
+  --color-text: #e0e0e0;
+
+  /* Backgrounds */
+  --bg-gradient: linear-gradient(90deg, #1f1c2c 0%, #928dab 100%);
+  --bg-gradient-alt: linear-gradient(90deg, #928dab 0%, #1f1c2c 100%);
+  --bg-card: rgba(255, 255, 255, 0.10);
+  --bg-card-focused: rgba(255, 255, 255, 0.18);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(31, 28, 44, 0.10);
+  --shadow-md: 0 4px 24px rgba(31, 28, 44, 0.13);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.25);
+  --shadow-focus: 0 8px 32px rgba(255, 215, 0, 0.18);
+
+  /* Blur */
+  --blur-glass: blur(10px);
+
+  /* Sizing */
+  --radius-card: 18px;
+  --radius-glass: 20px;
+  --radius-btn: 30px;
 }
 
 html, body { height: 100%; }

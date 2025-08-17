@@ -1,60 +1,79 @@
-<div class="products-container">
-  <div class="product-card" *ngFor="let product of products">
-    <figure class="product-figure">
-      <img [src]="product.image" [alt]="product.name" class="product-image" />
-    </figure>
+<div class="products-container">  
+  <div class="product-card" *ngFor="let product of products">  
+    <figure class="product-figure">  
+      <img [src]="product.image" [alt]="product.name" class="product-image" />  
+    </figure>  
 
-    <h3>{{ product.name }}</h3>
+    <h3>{{ product.name }}</h3>  
 
-    <!-- short teaser under title -->
-    <p class="product-desc">
-      {{ product.description }}
-    </p>
+    <!-- short teaser under title -->  
+    <p class="product-desc">  
+      {{ product.description }}  
+    </p>  
 
-    <p class="price">
-      <span class="old-price">Ksh {{ product.oldPrice }}</span>
-      <span class="new-price">Ksh {{ product.newPrice }}</span>
-    </p>
+    <p class="price">  
+      <span class="old-price">Ksh {{ product.oldPrice }}</span>  
+      <span class="new-price">Ksh {{ product.newPrice }}</span>  
+    </p>  
 
-    <button (click)="openProductDetails(product)" class="see-more-btn">
-      <i class="fas fa-eye"></i> See More
-    </button>
-  </div>
-</div>
+    <div class="card-actions">
+      <button (click)="openProductDetails(product)" class="see-more-btn">  
+        <i class="fas fa-eye"></i> See More  
+      </button>  
 
-<!-- Product Details Modal -->
-<div class="modal-backdrop" *ngIf="selectedProduct">
-  <div class="modal">
-    <div class="modal-header">
-      <h2>{{ selectedProduct.name }}</h2>
-      <button class="close-btn" (click)="closeProductDetails()">&times;</button>
+      <!-- Toggle Add/Remove button -->  
+      <button  
+        *ngIf="!isInCart(product)"  
+        (click)="addToCart(product)"  
+        class="add-btn">  
+        <i class="fas fa-cart-plus"></i> Add to Cart  
+      </button>  
+
+      <button  
+        *ngIf="isInCart(product)"  
+        (click)="removeFromCart(product)"  
+        class="remove-btn">  
+        <i class="fas fa-times"></i> Remove  
+      </button>  
     </div>
-    <div class="modal-content">
-      <table>
-        <tr><th>ID</th><td>{{ selectedProduct.id }}</td></tr>
-        <tr><th>Description</th><td>{{ selectedProduct.description }}</td></tr>
-        <tr>
-          <th>Image</th>
-          <td>
-            <figure class="modal-figure">
-              <img [src]="selectedProduct.image" [alt]="selectedProduct.name" width="160">
-              <figcaption class="img-caption img-caption--small">
-                {{ selectedProduct.description }}
-              </figcaption>
-            </figure>
-          </td>
-        </tr>
-        <tr><th>Old Price</th><td>Ksh {{ selectedProduct.oldPrice }}</td></tr>
-        <tr><th>New Price</th><td>Ksh {{ selectedProduct.newPrice }}</td></tr>
-        <tr><th>Color</th><td>{{ selectedProduct.color }}</td></tr>
-        <tr><th>Available Amount</th><td>{{ selectedProduct.availableAmount }}</td></tr>
-        <tr><th>Delivery Time</th><td>{{ selectedProduct.deliveryTime }}</td></tr>
-        <tr><th>Discount</th><td>{{ selectedProduct.discount }}%</td></tr>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <button class="remove-btn" (click)="removeFromCart(selectedProduct)">Remove</button>
-      <button class="add-btn" (click)="addToCart(selectedProduct)">Add to Cart</button>
-    </div>
-  </div>
+  </div>  
+</div>  
+
+<!-- Product Details Modal -->  
+<div class="modal-backdrop" *ngIf="selectedProduct">  
+  <div class="modal">  
+    <div class="modal-header">  
+      <h2>{{ selectedProduct.name }}</h2>  
+      <button class="close-btn" (click)="closeProductDetails()">&times;</button>  
+    </div>  
+
+    <div class="modal-content">  
+      <table>  
+        <tr><th>ID</th><td>{{ selectedProduct.id }}</td></tr>  
+        <tr><th>Description</th><td>{{ selectedProduct.description }}</td></tr>  
+        <tr>  
+          <th>Image</th>  
+          <td>  
+            <figure class="modal-figure">  
+              <img [src]="selectedProduct.image" [alt]="selectedProduct.name" width="160">  
+              <figcaption class="img-caption img-caption--small">  
+                {{ selectedProduct.description }}  
+              </figcaption>  
+            </figure>  
+          </td>  
+        </tr>  
+        <tr><th>Old Price</th><td>Ksh {{ selectedProduct.oldPrice }}</td></tr>  
+        <tr><th>New Price</th><td>Ksh {{ selectedProduct.newPrice }}</td></tr>  
+        <tr><th>Color</th><td>{{ selectedProduct.color }}</td></tr>  
+        <tr><th>Available Amount</th><td>{{ selectedProduct.availableAmount }}</td></tr>  
+        <tr><th>Delivery Time</th><td>{{ selectedProduct.deliveryTime }}</td></tr>  
+        <tr><th>Discount</th><td>{{ selectedProduct.discount }}%</td></tr>  
+      </table>  
+    </div>  
+
+    <div class="modal-footer">  
+      <button class="remove-btn" (click)="removeFromCart(selectedProduct)">Remove</button>  
+      <button class="add-btn" (click)="addToCart(selectedProduct)">Add to Cart</button>  
+    </div>  
+  </div>  
 </div>

@@ -1,310 +1,371 @@
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ==========================
+   Homepage (uses :root vars)
+   ========================== */
 
 .homepage-container {
-  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #e0e0e0;
-  background: linear-gradient(90deg, #1f1c2c 0%, #928dab 100%);
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background: var(--bg-gradient);
   min-height: 100vh;
 }
 
-/* Banner Section */
+/* ---------- Banner ---------- */
 .banner {
-  background: url('/assets/images/dress3.jpg') no-repeat center center/cover;
-  height: 45vh;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 52vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  overflow: hidden;
+  background:
+    linear-gradient(0deg, rgba(31,28,44,0.55), rgba(31,28,44,0.55)),
+    var(--bg-gradient);
+  /* If you have a hero image, uncomment the next line and adjust path: */
+  /* background: linear-gradient(0deg, rgba(31,28,44,0.55), rgba(31,28,44,0.55)), url('/assets/images/dress3.jpg') center/cover no-repeat; */
 }
 
 .glass {
-  background: rgba(31, 28, 44, 0.85);
-  backdrop-filter: blur(10px);
+  background: var(--bg-card-focused);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
   padding: 40px;
-  border-radius: 20px;
+  border-radius: var(--radius-glass);
   text-align: center;
-  max-width: 700px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  max-width: 720px;
+  width: min(92%, 720px);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.18);
 }
 
 .glass h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #ffd700;
-  letter-spacing: 1px;
+  font-size: clamp(1.6rem, 2.2vw + 1rem, 2.6rem);
+  margin-bottom: 14px;
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
 .glass p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #e0e0e0;
+  font-size: clamp(0.95rem, 0.4vw + 0.8rem, 1.2rem);
+  margin-bottom: 22px;
+  color: var(--color-light);
 }
 
 .cta-buttons {
   display: flex;
-  gap: 15px;
+  gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .cta {
-  padding: 12px 24px;
+  padding: 12px 22px;
   border: none;
-  border-radius: 30px;
+  border-radius: var(--radius-btn);
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s ease;
-  background-color: #ffd700;
-  color: #1f1c2c;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.cta:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: var(--color-light);
 }
 
 .cta.outline {
   background: transparent;
-  border: 2px solid #ffd700;
-  color: #ffd700;
+  color: var(--color-light);
+  border: 2px solid var(--color-primary);
 }
 
-.cta:hover {
-  transform: scale(1.05);
-  background: #fffbe7;
-  color: #1f1c2c;
+.cta.outline:hover {
+  background: var(--color-primary);
+  color: var(--color-secondary);
 }
 
-/* Carousel Section */
+.cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-light);
+}
+
+/* ---------- Carousel ---------- */
 .carousel-container {
-  padding: 60px 20px;
-  background: linear-gradient(90deg, #1f1c2c 0%, #928dab 100%);
+  padding: 64px 16px 40px;
+  background: var(--bg-gradient-alt);
   text-align: center;
 }
 
 .carousel-container h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #ffd700;
-  letter-spacing: 1px;
+  font-size: clamp(1.4rem, 1.5vw + 1rem, 2rem);
+  margin-bottom: 26px;
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
 }
 
 .carousel-wrapper {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: center;
-  gap: 15px;
+  gap: 10px;
+  perspective: 1200px; /* depth for subtle 3D */
   min-height: 320px;
 }
 
 .nav {
-  font-size: 2.2rem;
-  border: none;
-  background: none;
+  font-size: 1.8rem;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--color-primary);
+  background: var(--bg-card);
+  border-radius: 50%;
   cursor: pointer;
-  color: #ffd700;
-  padding: 10px;
-  transition: color 0.3s, transform 0.3s;
-  z-index: 2;
-  outline: none;
+  color: var(--color-primary);
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
 }
 
 .nav:hover {
-  color: #fffbe7;
-  transform: scale(1.2);
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  transform: scale(1.06);
+}
+
+.nav:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-light);
 }
 
 .carousel {
   display: flex;
   overflow: hidden;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   justify-content: center;
-  align-items: center;
-  gap: 30px;
+  align-items: stretch;
+  gap: 24px;
   position: relative;
+  padding: 8px 4px;
 }
 
 .card {
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(31,28,44,0.13);
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
-  transition: 
-    transform 0.5s cubic-bezier(.4,2,.6,1), 
-    box-shadow 0.4s, 
-    filter 0.4s, 
-    opacity 0.4s;
-  min-width: 250px;
+  transition:
+    transform 600ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 300ms ease,
+    filter 300ms ease,
+    opacity 300ms ease,
+    border-color 300ms ease;
+  min-width: 240px;
   max-width: 300px;
-  flex-shrink: 0;
-  background: rgba(255,255,255,0.10);
-  border: 2px solid transparent;
-  opacity: 0.7;
-  filter: grayscale(40%);
-  transform: scale(0.92);
+  flex: 0 0 260px;
+  border: 1px solid transparent;
+  opacity: 0.8;
+  transform: translateZ(0) scale(0.92) rotateY(0deg);
+  filter: grayscale(40%) saturate(90%);
 }
 
 .card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  background: #fffbe7;
-  border-bottom: 2px solid #ffd700;
+  background: var(--color-light);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .card .info {
-  padding: 20px;
+  padding: 16px 16px 18px;
+  text-align: left;
 }
 
 .card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #ffd700;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  color: var(--color-light);
+  font-weight: 700;
 }
 
 .card p {
-  font-size: 0.95rem;
-  color: #e0e0e0;
-  margin-bottom: 15px;
+  font-size: 0.92rem;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  line-height: 1.45;
 }
 
 .price-section {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #ffd700;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 1rem;
+  margin-bottom: 8px;
 }
 
-/* Carousel Positioning & Animation */
+.old-price {
+  text-decoration: line-through;
+  color: rgba(224,224,224,0.6);
+  font-size: 0.9rem;
+}
+
+.new-price {
+  color: var(--color-primary);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.product-color {
+  font-size: 0.9rem;
+  color: var(--color-light);
+  opacity: 0.9;
+}
+
+/* Carousel emphasis states driven by ngClass */
 .card.left {
-  opacity: 0.7;
-  filter: grayscale(60%);
-  transform: scale(0.85) translateX(-30px);
+  opacity: 0.65;
+  filter: grayscale(60%) blur(0.3px);
+  transform: translateX(-24px) translateY(4px) rotateY(6deg) scale(0.88);
   z-index: 1;
 }
 
 .card.center {
   opacity: 1;
   filter: none;
-  background: rgba(255,255,255,0.18);
-  border: 2px solid #ffd700;
-  box-shadow: 0 8px 32px rgba(255,215,0,0.18);
-  transform: scale(1.08) translateY(-10px);
+  background: var(--bg-card-focused);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+  transform: translateY(-10px) scale(1.06) rotateY(0deg);
   z-index: 2;
-  animation: focusCard 0.7s cubic-bezier(.4,2,.6,1);
+  animation: focusCard 700ms cubic-bezier(.2,.8,.2,1);
 }
 
 @keyframes focusCard {
-  0% {
-    transform: scale(0.92) translateY(0);
-    box-shadow: 0 4px 24px rgba(31,28,44,0.13);
+  from {
+    transform: translateY(0) scale(0.94);
+    box-shadow: var(--shadow-md);
   }
-  100% {
-    transform: scale(1.08) translateY(-10px);
-    box-shadow: 0 8px 32px rgba(255,215,0,0.18);
+  to {
+    transform: translateY(-10px) scale(1.06);
+    box-shadow: var(--shadow-focus);
   }
 }
 
 .card.right {
-  opacity: 0.7;
-  filter: grayscale(60%);
-  transform: scale(0.85) translateX(30px);
+  opacity: 0.65;
+  filter: grayscale(60%) blur(0.3px);
+  transform: translateX(24px) translateY(4px) rotateY(-6deg) scale(0.88);
   z-index: 1;
 }
 
+/* Dots */
 .dots {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .dots span {
   display: inline-block;
   width: 12px;
   height: 12px;
-  background: #fffbe7;
+  background: var(--color-light);
   border-radius: 50%;
-  margin: 0 5px;
+  margin: 0 6px;
   cursor: pointer;
-  transition: background 0.3s;
-  border: 2px solid #ffd700;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  border: 2px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.dots span:hover {
+  transform: scale(1.15);
+  background: var(--color-primary);
 }
 
 .dots span.active {
-  background: #ffd700;
+  background: var(--color-primary);
 }
 
-/* Why Choose Us Section */
+/* ---------- Why Choose Us ---------- */
 .why-choose {
-  background: linear-gradient(90deg, #928dab 0%, #1f1c2c 100%);
-  padding: 60px 20px;
+  background: var(--bg-gradient-alt);
+  padding: 64px 16px;
   text-align: center;
 }
 
 .why-choose h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #ffd700;
-  letter-spacing: 1px;
+  font-size: clamp(1.4rem, 1.4vw + 1rem, 2rem);
+  margin-bottom: 24px;
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
 }
 
 .reasons {
   list-style: none;
-  font-size: 1.1rem;
-  max-width: 700px;
+  font-size: 1.05rem;
+  max-width: 820px;
   margin: 0 auto;
   display: grid;
-  gap: 15px;
+  gap: 14px;
 }
 
 .reasons li {
-  background: rgba(255,255,255,0.10);
-  padding: 15px 20px;
-  border-left: #ffd700 5px solid;
-  border-radius: 10px;
-  color: #fffbe7;
-  box-shadow: 0 2px 8px rgba(31,28,44,0.10);
+  background: var(--bg-card);
+  padding: 14px 18px;
+  border-left: 5px solid var(--color-primary);
+  border-radius: 12px;
+  color: var(--color-light);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .carousel {
-    gap: 10px;
+/* ---------- Accessibility & Motion ---------- */
+.nav, .cta, .see-more-btn, .dots span {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .nav,
+  .cta,
+  .dots span,
+  .glass,
+  .modal {
+    transition: none !important;
+    animation: none !important;
   }
-  .card {
-    min-width: 180px;
-    max-width: 220px;
-  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .carousel { gap: 16px; }
+  .card { flex-basis: 240px; }
 }
 
 @media (max-width: 768px) {
-  .glass {
-    padding: 25px;
-  }
-
-  .glass h1 {
-    font-size: 2rem;
-  }
-
-  .carousel {
-    gap: 5px;
-  }
-
-  .card {
-    min-width: 140px;
-    max-width: 170px;
-  }
+  .banner { height: 46vh; padding: 1.5rem 1rem; }
+  .glass { padding: 24px; }
+  .carousel-wrapper { min-height: 280px; }
+  .carousel { gap: 12px; }
+  .card { flex-basis: 210px; min-width: 200px; }
 }
 
 @media (max-width: 600px) {
   .carousel-wrapper {
-    min-height: 220px;
+    grid-template-columns: 1fr; /* stack nav below for tight screens */
   }
-  .card {
-    min-width: 110px;
-    max-width: 130px;
+  .nav.prev, .nav.next {
+    position: absolute;
+    top: 42%;
+    transform: translateY(-50%);
   }
-  .glass {
-    padding: 12px;
-  }
+  .nav.prev { left: 6px; }
+  .nav.next { right: 6px; }
+  .card { flex-basis: 180px; min-width: 180px; }
+  .card img { height: 170px; }
 }

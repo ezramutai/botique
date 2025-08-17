@@ -8,7 +8,7 @@ import {
   ApexResponsive,
   ApexLegend
 } from 'ng-apexcharts';
-import { products, Product } from '../../data/products_data'; // match file & export
+import { products, Product } from '../../data/products_data';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -42,10 +42,9 @@ export class Products {
     legend: { position: 'right' }
   };
 
-  products: Product[] = products; // from products_data.ts
+  products: Product[] = products;
   selectedProduct: Product | null = null;
 
-  // simple toast state for UX feedback (optional)
   showToast = false;
   toastMessage = '';
 
@@ -62,32 +61,32 @@ export class Products {
   }
 
   /** Check if product is in cart */
-  isInCart(productId: number): boolean {
-    return this.cartService.isInCart(productId);
+  isInCart(product: Product): boolean {
+    return this.cartService.isInCart(product.id);
   }
 
-  /** Add product to cart (used by modal / buttons) */
+  /** Add product to cart */
   addToCart(product: Product) {
     this.cartService.addToCart(product);
     this.showTemporaryToast(`${product.name} added to cart`);
   }
 
-  /** Remove product from cart (used by modal / buttons) */
+  /** Remove product from cart */
   removeFromCart(product: Product) {
     this.cartService.removeFromCart(product.id);
     this.showTemporaryToast(`${product.name} removed from cart`);
   }
 
-  /** Toggle add/remove (helper for quick toggles on cards) */
+  /** Toggle add/remove for convenience */
   toggleCart(product: Product) {
-    if (this.isInCart(product.id)) {
+    if (this.isInCart(product)) {
       this.removeFromCart(product);
     } else {
       this.addToCart(product);
     }
   }
 
-  /** Calculate discount percentage from oldPrice / newPrice */
+  /** Calculate discount percentage */
   getDiscount(product: Product): number {
     const { oldPrice, newPrice } = product as any;
     if (!oldPrice || !newPrice || oldPrice <= newPrice) return 0;

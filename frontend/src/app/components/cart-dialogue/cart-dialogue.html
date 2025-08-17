@@ -5,22 +5,69 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <div *ngIf="data.cartItems.length; else emptyCart">
-    <div *ngFor="let item of data.cartItems" class="cart-item">
-      <img [src]="item.image" width="50" height="50" />
-      <div class="item-info">
-        <strong>{{ item.name }}</strong>
-        <p>Ksh {{ item.newPrice }} × {{ item.quantity }}</p>
-        <div class="qty-controls">
-          <button mat-mini-button (click)="decrease(item)">−</button>
-          <button mat-mini-button (click)="increase(item)">+</button>
+
+  <div *ngIf="dataSource.data.length; else emptyCart">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 cart-table">
+
+      <!-- Image Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef> Image </th>
+        <td mat-cell *matCellDef="let item">
+          <img [src]="item.image" width="50" height="50" alt="{{item.name}}" />
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Product </th>
+        <td mat-cell *matCellDef="let item"><strong>{{ item.name }}</strong></td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let item">Ksh {{ item.newPrice }}</td>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let item">
+          <div class="qty-controls">
+            <button mat-mini-button (click)="decrease(item)">−</button>
+            <span>{{ item.quantity }}</span>
+            <button mat-mini-button (click)="increase(item)">+</button>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Total Column -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let item">Ksh {{ item.newPrice * item.quantity }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let item">
           <button mat-icon-button color="warn" (click)="remove(item)">
             <mat-icon>delete</mat-icon>
           </button>
-        </div>
-      </div>
+        </td>
+      </ng-container>
+
+      <!-- Header + Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Cart Total -->
+    <div class="cart-total">
+      <h3>Total: Ksh {{ getTotal() }}</h3>
     </div>
   </div>
+
   <ng-template #emptyCart>
     <p class="empty">Your cart is empty.</p>
   </ng-template>
